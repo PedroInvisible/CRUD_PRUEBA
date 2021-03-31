@@ -2,7 +2,7 @@
 	define('HOMEDIR',__DIR__);
 
 	include 'views/header.php';
-	include 'toolbar.php';
+	include 'views/empleados/toolbar.php';
 	$page   =isset($_GET['page'])?$_GET['page']:'empleados';
 	$folder =isset($_GET['folder'])?$_GET['folder']:'empleados';
 	if(isset($_POST['btnSearch'])){

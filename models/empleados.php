@@ -5,8 +5,8 @@
 	*/
 	class empleados
 	{
-		private $conn;
-		private $link;
+		public $conn;
+		public $link;
 
 		function __construct()
 		{
@@ -53,7 +53,7 @@
 		//Obtiene el usuario por id
 		public function setEditUser($data){
 			if(!empty($data['id'])){
-				$query  ="UPDATE empleados SET name='".$data['name']."',email='".$data['email']."', sexo='".$data['sexo']."' WHERE id=".$data['id'];
+				$query  ="UPDATE empleados SET nombre='".$data['nombre']."',email='".$data['email']."', sexo='".$data['sexo']."' WHERE id=".$data['id'];
 				$result =mysqli_query($this->link,$query);
 				if($result){
 					return true;
@@ -93,4 +93,31 @@
 				return false;
 			}
 		}
+
+		public function getAreas($id=NULL){
+			if(!empty($id)){
+				$query  ="SELECT nombre FROM areas WHERE idareas=".$id;
+				$result =mysqli_query($this->link,$query);
+				$data   =array();
+				while ($data[]=mysqli_fetch_assoc($result));
+				array_pop($data);
+				return $data;
+			}else{
+				return false;
+			}
+		}
+
+
+		//Trae todas las areas
+		public function getAllAreas()
+		{
+			$query  ="SELECT * FROM areas";
+			$result =mysqli_query($this->link,$query);
+			$data   =array();
+			while ($data[]=mysqli_fetch_assoc($result));
+			array_pop($data);
+			return $data;
+		}
+
+
 	}

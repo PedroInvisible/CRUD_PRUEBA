@@ -13,8 +13,6 @@
 	}
 
 	$title="Listado de Usuarios";
-	include 'toolbar.php';
-
 	if(count($empleados)>0){
 
 		foreach ($empleados as $column =>$value) {
@@ -27,17 +25,29 @@
 			}
 
 			if ($value['boletin'] == 1){
-				$boletin= "Recibir";
+				$boletin= "Si";
 			}elseif ($value['boletin'] == 0){
-				$boletin= "No Recibir";
+				$boletin= "No";
 			}else{
 				$boletin= "";
 			}
+
+			if(isset($value['area_id'])){
+				$id = $value['area_id'];
+
+				$areas = $user->getAreas($id);
+				foreach ($areas as $column =>$nombre) {
+					$area = $nombre['nombre'];
+				}
+			}else{
+				$area = '';
+			}		
 
 		}
 	}
 
 
+	
 ?>
 <div class="row">
 	<div class="col text-center">
@@ -80,7 +90,7 @@
 								<td><?= $value['nombre']; ?></td>
 								<td><a href="./index.php?page=new_email&email=<?= $value['email']; ?>&folder=email&nombre=<?= $value['nombre']; ?>" title="Enviar correo electrónico."><?= $value['email']; ?></a></td>
 								<td><?=$sexo;  ?></td>
-								<td><?= $value['area_id']; ?></td>
+								<td><?= $area; ?></td>
 								<td><?= $boletin; ?></td>
 								<td><?= $value['descripcion']; ?></td>
 								<td class="text-center">

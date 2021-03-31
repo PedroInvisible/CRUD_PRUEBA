@@ -1,6 +1,5 @@
 <?php
 	include dirname(__file__,2).'/models/empleados.php';
-
 	$empleados=new Empleados();
 
 	//Request: creacion de nuevo usuario

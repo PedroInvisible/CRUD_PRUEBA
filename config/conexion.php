@@ -20,6 +20,6 @@
 				die('Error de Conexión (' . mysqli_connect_errno() . ') '.mysqli_connect_error());
 			}
 			return($enlace);
-			// mysqli_close($enlace); //cierra la conexion a nuestra base de datos, un ounto de seguridad importante.
+			mysqli_close($enlace); //cierra la conexion a nuestra base de datos, un ounto de seguridad importante.
 		}
 	}
