@@ -1,5 +1,6 @@
-<?php
-	include dirname(__file__,2)."/config/conexion.php";
+<?php	
+	include "./config/conexion.php";
+	include "../config/conexion.php";
 	/**
 	*
 	*/
@@ -53,7 +54,21 @@
 		//Obtiene el usuario por id
 		public function setEditUser($data){
 			if(!empty($data['id'])){
-				$query  ="UPDATE empleados SET nombre='".$data['nombre']."',email='".$data['email']."', sexo='".$data['sexo']."' WHERE id=".$data['id'];
+				$query  ="UPDATE empleados SET nombre='".$data['nombre']."',email='".$data['email']."', sexo='".$data['sexo']."', descripcion='".$data['descripcion']."', boletin='".$data['boletin']."' WHERE id=".$data['id'];
+				$result =mysqli_query($this->link,$query);
+				if($result){
+					return true;
+				}else{
+					return false;
+				}
+			}else{
+				return false;
+			}
+		}
+		//Obtiene el usuario por id
+		public function setEditRolUser($data){
+			if(!empty($data['id'])){
+				$query  ="UPDATE empleado_rol SET rol_id='".$data['rol']."' WHERE empleado_id=".$data['id'];
 				$result =mysqli_query($this->link,$query);
 				if($result){
 					return true;
@@ -118,6 +133,32 @@
 			array_pop($data);
 			return $data;
 		}
+
+		//Crea un nuevo usuario
+		public function rolUser($data){
+			$query  ="INSERT INTO empleado_rol (empleado_id, rol_id) VALUES ('".$data['id']."','".$data['rol']."')";
+			$result =mysqli_query($this->link,$query);
+			if(mysqli_affected_rows($this->link)>0){
+				return true;
+			}else{
+				return false;
+			}
+		}
+
+		//Crea un nuevo usuario
+		public function getRolById($id){
+			if(!empty($id)){				
+				$query  ="SELECT * FROM empleado_rol WHERE empleado_id=".$id;				
+				$result =mysqli_query($this->link,$query);
+				$data   =array();
+				while ($data[]=mysqli_fetch_assoc($result));
+				array_pop($data);				
+				return $data;
+			}else{
+				return false;
+			}
+		}
+		
 
 
 	}

@@ -9,6 +9,23 @@
 
 
 ?>
+<div class="form-group text-center">
+  	<?php
+  		if(isset($_GET['success'])){
+	?>
+			<br><div class="alert alert-success">
+				El usuario ha sido creado.
+			</div>
+	<?php
+  		}else if(isset($_GET['error'])){
+  	?>
+			<br><div class="alert alert-danger">
+				Ha ocurrido un error al crear el usuario, por favor intente de nuevo.
+			</div>
+	<?php
+  		}
+  	?>
+  </div>
 <form action="./controllers/controller.php?folder=<?= $_GET['folder']; ?>" method="POST">
   <div class="row">
     <div class="col text-center">
@@ -43,26 +60,16 @@
   	 <label for="descripcion">Descripcion</label>
 	   <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Describe tu experiencia" required cols="40" rows="5"></textarea>
   </div>
-  <label><input type="checkbox" name ="boletin" id="boletin" value="1"> Deseo Recibir mi boletin Informativo</label>
-  
-  <div class="form-group text-center">
-  	<input type="submit" name="create" value="Crear" class="btn btn-primary">
+  <div class="form-group">
+  	<label><input type="checkbox" name ="boletin" id="boletin" value="1"> Deseo Recibir mi boletin Informativo</label>
+  </div>
+  <div class="form-group">
+  <label for="descripcion">Roles</label> <br>
+	  	<input type="radio" id="rol" name="rol" value="1"  required  /> Profesional de Proyectos - Desarrollador<br>
+		<input type="radio" id="rol" name="rol" value="2"  required  /> Gerente estrategico<br>
+		<input type="radio" id="rol" name="rol" value="3"  required  /> Auxiliar administrativo<br>
   </div>
   <div class="form-group text-center">
-  	<?php
-  		if(isset($_GET['success'])){
-	?>
-			<div class="alert alert-success">
-				El usuario ha sido creado.
-			</div>
-	<?php
-  		}else if(isset($_GET['error'])){
-  	?>
-			<div class="alert alert-danger">
-				Ha ocurrido un error al crear el usario, por favor intente de nuevo.
-			</div>
-	<?php
-  		}
-  	?>
-  </div>
+  	<input type="submit" id="create" name="create" value="Crear" class="btn btn-primary"><br><br>
+  </div> 
 </form>

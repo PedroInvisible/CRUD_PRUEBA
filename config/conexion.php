@@ -8,7 +8,7 @@
 		public function __construct(){
 			$this->host     ="localhost"; //
 			$this->user     ="root"; //Usuario Base de datos
-			$this->password ="*1NV1s1bl3*"; //Contraseña de usuario de base de datos
+			$this->password =""; //Contraseña de usuario de base de datos
 			$this->dataBase ="rrhh"; //Nombre de la base de datos
 		}
 
